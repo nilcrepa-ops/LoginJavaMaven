@@ -17,7 +17,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 
 public class Login_gridController implements Initializable {
-    
+
     @FXML
     private ImageView imgSegurata;
     @FXML
@@ -56,9 +56,10 @@ public class Login_gridController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
-    
+
     @FXML
     private void pulsarRegister() {
+        boolean todoOk = true;
         int camposIncorrectos = 0;
         String[] adverts = {
             "Atención: Debes rellenar todos los campos.",
@@ -82,48 +83,50 @@ public class Login_gridController implements Initializable {
             lblInfo.setStyle("-fx-text-fill: red");
             Image imgNo = new Image(getClass().getResourceAsStream("/img/segurata_no.png"));
             imgSegurata.setImage(imgNo);
-            
-        } else if (!userDataValidations.checkName(name)) {
-            //lblInfo.setText(adverts[1]);
-            //lblInfo.setStyle("-fx-text-fill: red");
+            todoOk = false;
+
+        }
+        if (!userDataValidations.checkName(name)) {
             lblName.setStyle("-fx-text-fill: red");
             Image imgNo = new Image(getClass().getResourceAsStream("/img/segurata_no.png"));
             imgSegurata.setImage(imgNo);
             camposIncorrectos++;
-            
-        } else if (!userDataValidations.checkId(id)) {
-            //lblInfo.setText(adverts[2]);
-            // lblInfo.setStyle("-fx-text-fill: red");
+            todoOk = false;
+
+        }
+        if (!userDataValidations.checkId(id)) {
             lblDNI.setStyle("-fx-text-fill: red");
             Image imgNo = new Image(getClass().getResourceAsStream("/img/segurata_no.png"));
             imgSegurata.setImage(imgNo);
             camposIncorrectos++;
-            
-        } else if (!userDataValidations.checkPostalCode(postalCode)) {
-            //lblInfo.setText(adverts[3]);
-            //lblInfo.setStyle("-fx-text-fill: red");
+            todoOk = false;
+
+        }
+        if (!userDataValidations.checkPostalCode(postalCode)) {
             lblPostal.setStyle("-fx-text-fill: red");
             Image imgNo = new Image(getClass().getResourceAsStream("/img/segurata_no.png"));
             imgSegurata.setImage(imgNo);
             camposIncorrectos++;
-            
-        } else if (!userDataValidations.checkFormatDate(birth)) {
-            //lblInfo.setText(adverts[4]);
-            //lblInfo.setStyle("-fx-text-fill: red");
+            todoOk = false;
+
+        }
+        if (!userDataValidations.checkFormatDate(birth)) {
             lblBirth.setStyle("-fx-text-fill: red");
             Image imgNo = new Image(getClass().getResourceAsStream("/img/segurata_no.png"));
             imgSegurata.setImage(imgNo);
             camposIncorrectos++;
-            
-        } else if (!userDataValidations.checkEmail(mail)) {
-            // lblInfo.setText(adverts[5]);
-            // lblInfo.setStyle("-fx-text-fill: red");
+            todoOk = false;
+
+        }
+        if (!userDataValidations.checkEmail(mail)) {
             lblMail.setStyle("-fx-text-fill: red");
             Image imgNo = new Image(getClass().getResourceAsStream("/img/segurata_no.png"));
             imgSegurata.setImage(imgNo);
             camposIncorrectos++;
-            
-        } else {
+            todoOk = false;
+
+        }
+        if (todoOk){
             lblInfo.setText(adverts[6]);
             lblInfo.setStyle("-fx-text-fill: green");
             lblName.setStyle("-fx-text-fill: black");
@@ -131,35 +134,36 @@ public class Login_gridController implements Initializable {
             lblPostal.setStyle("-fx-text-fill: black");
             lblBirth.setStyle("-fx-text-fill: black");
             lblMail.setStyle("-fx-text-fill: black");
-            
+
             Image imgSi = new Image(getClass().getResourceAsStream("/img/segurata_si.png"));
             imgSegurata.setImage(imgSi);
         }
-        
+
         if (camposIncorrectos > 0) {
             lblInfo.setText("Uno o más campos con datos no válidos.");
             lblInfo.setStyle("-fx-text-fill: red");
         }
     }
     private MediaPlayer mediaPlayer;
+
     @FXML
     public void pulsarMagico() {
         imgSegurata.setVisible(false);
         videoSeg.setVisible(true);
-        
+
         String pathVideo = getClass().getResource("/img/segurata_vid.mp4").toExternalForm();
-        
+
         Media media = new Media(pathVideo);
         mediaPlayer = new MediaPlayer(media);
-        
+
         mediaPlayer.setOnEndOfMedia(() -> {
             imgSegurata.setVisible(true);
             videoSeg.setVisible(false);
         });
-        
+
         videoSeg.setMediaPlayer(mediaPlayer);
         mediaPlayer.play();
-        
+
     }
-    
+
 }
