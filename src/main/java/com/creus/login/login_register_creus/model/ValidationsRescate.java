@@ -1,14 +1,21 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package com.creus.login.login_register_creus.model;
 
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 
-public class userDataValidations {
+/**
+ *
+ * @author Nil
+ */
+public class ValidationsRescate {
 
     /**
-     * 
-     * @param user
+     * * @param user
      * @param id
      * @param postalCode
      * @param fecha
@@ -17,7 +24,7 @@ public class userDataValidations {
      */
     public static boolean comprobarCampos(String user, String id, String postalCode, String fecha, String mail) {
         return user.isEmpty() || id.isEmpty() || postalCode.isEmpty() || fecha.isEmpty() || mail.isEmpty();
-    } 
+    }
 
     /**
      *

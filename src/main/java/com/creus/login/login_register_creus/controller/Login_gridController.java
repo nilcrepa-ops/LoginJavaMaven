@@ -6,7 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import ficheros.ClassFichero;
 
-import com.creus.login.login_register_creus.model.UserDataValidations;
+import com.creus.login.login_register_creus.model.ValidationsRescate;
 import java.io.FileNotFoundException;
 import javafx.event.ActionEvent;
 
@@ -87,7 +87,7 @@ public class Login_gridController implements Initializable {
         String mail = txtMail.getText();
 
         //Si hay algun campo vacio, lanzamos advertencia y cambiamos imagen
-        if (UserDataValidations.comprobarCampos(name, id, postalCode, birth, mail)) {
+        if (ValidationsRescate.comprobarCampos(name, id, postalCode, birth, mail)) {
             lblInfo.setText(adverts[0]);
             lblInfo.setStyle("-fx-text-fill: red");
             Image imgNo = new Image(getClass().getResourceAsStream("/img/segurata_no.png"));
@@ -95,7 +95,7 @@ public class Login_gridController implements Initializable {
             todoOk = false;
 
         }
-        if (!UserDataValidations.checkName(name)) {
+        if (!ValidationsRescate.checkName(name)) {
             lblName.setStyle("-fx-text-fill: red");
             Image imgNo = new Image(getClass().getResourceAsStream("/img/segurata_no.png"));
             imgSegurata.setImage(imgNo);
@@ -103,7 +103,7 @@ public class Login_gridController implements Initializable {
             todoOk = false;
 
         }
-        if (!UserDataValidations.checkId(id)) {
+        if (!ValidationsRescate.checkId(id)) {
             lblDNI.setStyle("-fx-text-fill: red");
             Image imgNo = new Image(getClass().getResourceAsStream("/img/segurata_no.png"));
             imgSegurata.setImage(imgNo);
@@ -111,7 +111,7 @@ public class Login_gridController implements Initializable {
             todoOk = false;
 
         }
-        if (!UserDataValidations.checkPostalCode(postalCode)) {
+        if (!ValidationsRescate.checkPostalCode(postalCode)) {
             lblPostal.setStyle("-fx-text-fill: red");
             Image imgNo = new Image(getClass().getResourceAsStream("/img/segurata_no.png"));
             imgSegurata.setImage(imgNo);
@@ -119,7 +119,7 @@ public class Login_gridController implements Initializable {
             todoOk = false;
 
         }
-        if (!UserDataValidations.checkFormatDate(birth)) {
+        if (!ValidationsRescate.checkFormatDate(birth)) {
             lblBirth.setStyle("-fx-text-fill: red");
             Image imgNo = new Image(getClass().getResourceAsStream("/img/segurata_no.png"));
             imgSegurata.setImage(imgNo);
@@ -127,7 +127,7 @@ public class Login_gridController implements Initializable {
             todoOk = false;
 
         }
-        if (!UserDataValidations.checkEmail(mail)) {
+        if (!ValidationsRescate.checkEmail(mail)) {
             lblMail.setStyle("-fx-text-fill: red");
             Image imgNo = new Image(getClass().getResourceAsStream("/img/segurata_no.png"));
             imgSegurata.setImage(imgNo);
