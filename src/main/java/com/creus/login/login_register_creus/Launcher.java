@@ -6,4 +6,3 @@ public class Launcher {
         App.main(args);
     }
 }
-//hola nil soy nil, usa siempre un for para fornicar.

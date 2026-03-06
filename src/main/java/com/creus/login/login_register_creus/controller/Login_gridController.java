@@ -5,7 +5,9 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
-import com.creus.login.login_register_creus.model.userDataValidations;
+
+import com.creus.login.login_register_creus.model.UserDataValidations;
+
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -61,14 +63,15 @@ public class Login_gridController implements Initializable {
     private void pulsarRegister() {
         boolean todoOk = true;
         int camposIncorrectos = 0;
-        String[] adverts = {
+        String[] adverts = { //Lo dejo por si me sirve mas adelante
             "Atención: Debes rellenar todos los campos.",
             "Atención: Datos de campo 'Nombre' no válido.",
             "Atención: Datos de campo 'DNI' no válidos.",
             "Atención: Datos de campo 'Código Postal' no válidos.",
             "Atención: Datos de campo 'Fecha de nacimiento' no válidos (DD/MM/AAAA).",
             "Atención: Datos de campo 'Correo Electrónico' no válidos.",
-            "Usuario registrado con éxito"
+            "Usuario registrado con éxito",
+            "Uno o más campos con datos no válidos."
         };
         //capturamos en String's los datos introducidos por el usuario
         String name = txtName.getText();
@@ -78,7 +81,7 @@ public class Login_gridController implements Initializable {
         String mail = txtMail.getText();
 
         //Si hay algun campo vacio, lanzamos advertencia y cambiamos imagen
-        if (userDataValidations.comprobarCampos(name, id, postalCode, birth, mail)) {
+        if (UserDataValidations.comprobarCampos(name, id, postalCode, birth, mail)) {
             lblInfo.setText(adverts[0]);
             lblInfo.setStyle("-fx-text-fill: red");
             Image imgNo = new Image(getClass().getResourceAsStream("/img/segurata_no.png"));
@@ -86,7 +89,7 @@ public class Login_gridController implements Initializable {
             todoOk = false;
 
         }
-        if (!userDataValidations.checkName(name)) {
+        if (!UserDataValidations.checkName(name)) {
             lblName.setStyle("-fx-text-fill: red");
             Image imgNo = new Image(getClass().getResourceAsStream("/img/segurata_no.png"));
             imgSegurata.setImage(imgNo);
@@ -94,7 +97,7 @@ public class Login_gridController implements Initializable {
             todoOk = false;
 
         }
-        if (!userDataValidations.checkId(id)) {
+        if (!UserDataValidations.checkId(id)) {
             lblDNI.setStyle("-fx-text-fill: red");
             Image imgNo = new Image(getClass().getResourceAsStream("/img/segurata_no.png"));
             imgSegurata.setImage(imgNo);
@@ -102,7 +105,7 @@ public class Login_gridController implements Initializable {
             todoOk = false;
 
         }
-        if (!userDataValidations.checkPostalCode(postalCode)) {
+        if (!UserDataValidations.checkPostalCode(postalCode)) {
             lblPostal.setStyle("-fx-text-fill: red");
             Image imgNo = new Image(getClass().getResourceAsStream("/img/segurata_no.png"));
             imgSegurata.setImage(imgNo);
@@ -110,7 +113,7 @@ public class Login_gridController implements Initializable {
             todoOk = false;
 
         }
-        if (!userDataValidations.checkFormatDate(birth)) {
+        if (!UserDataValidations.checkFormatDate(birth)) {
             lblBirth.setStyle("-fx-text-fill: red");
             Image imgNo = new Image(getClass().getResourceAsStream("/img/segurata_no.png"));
             imgSegurata.setImage(imgNo);
@@ -118,7 +121,7 @@ public class Login_gridController implements Initializable {
             todoOk = false;
 
         }
-        if (!userDataValidations.checkEmail(mail)) {
+        if (!UserDataValidations.checkEmail(mail)) {
             lblMail.setStyle("-fx-text-fill: red");
             Image imgNo = new Image(getClass().getResourceAsStream("/img/segurata_no.png"));
             imgSegurata.setImage(imgNo);
@@ -126,7 +129,7 @@ public class Login_gridController implements Initializable {
             todoOk = false;
 
         }
-        if (todoOk){
+        if (todoOk){ //Si estan todos los campos bien "reseteamos" los labels a color negro
             lblInfo.setText(adverts[6]);
             lblInfo.setStyle("-fx-text-fill: green");
             lblName.setStyle("-fx-text-fill: black");
@@ -137,10 +140,11 @@ public class Login_gridController implements Initializable {
 
             Image imgSi = new Image(getClass().getResourceAsStream("/img/segurata_si.png"));
             imgSegurata.setImage(imgSi);
+            
         }
 
         if (camposIncorrectos > 0) {
-            lblInfo.setText("Uno o más campos con datos no válidos.");
+            lblInfo.setText(adverts[7]);
             lblInfo.setStyle("-fx-text-fill: red");
         }
     }
