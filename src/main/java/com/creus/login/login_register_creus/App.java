@@ -5,6 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import ficheros.ClassFichero;
+
 
 import java.io.IOException;
 
@@ -21,6 +23,11 @@ public class App extends Application {
         stage.setScene(scene);
         stage.show();
         stage.setResizable(false);
+    }
+    
+    @Override
+    public void stop(){
+        ClassFichero.closeFile();
     }
 
     static void setRoot(String fxml) throws IOException {
