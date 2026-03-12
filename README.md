@@ -1,64 +1,65 @@
-# LoginJavaMaven 🛡️
+# Formulario de Registro e Inicio de Sesión (JavaFX) 🛡️
 
-Proyecto de escritorio desarrollado en **Java** utilizando **JavaFX** y gestionado con **Maven**. Se trata de un sistema de registro que implementa validaciones de datos en tiempo real, feedback visual dinámico y elementos multimedia.
+Este proyecto es una aplicación de escritorio desarrollada en **Java** utilizando **JavaFX** y gestionada con **Maven**. Implementa un sistema completo de registro e inicio de sesión con validaciones estrictas en tiempo real, persistencia de datos y una interfaz dinámica con elementos multimedia.
 
-## 🚀 Características principales
+## 🚀 Características Principales
 
-* **Validación Avanzada de Datos**: Implementación de lógica personalizada para verificar la integridad de la información ingresada:
-* Validación de **DNI** mediante algoritmo de comprobación de letra.
-* Verificación de **Código Postal** dentro del rango del territorio español.
-* Validación de formato de **Fecha de Nacimiento** (DD/MM/AAAA) y coherencia cronológica.
-* Validación de estructura de **Correo Electrónico**.
-* Comprobación de campos obligatorios vacíos.
+* **Sistema de Doble Pantalla (Registro/Login)**: Navegación fluida entre el formulario de registro y la pantalla de inicio de sesión mediante hipervínculos dinámicos.
+* **Validación de Datos Robusta**: Implementación de lógica personalizada en `UserDataValidations` para asegurar la integridad de los datos:
+* **Registro**: Validación de nombre, DNI (con algoritmo de letra), código postal, fecha de nacimiento, formato de email y contraseña obligatoria.
+* **Login**: Comprobación de campos vacíos antes de procesar el acceso.
 
 
-* **Feedback Visual Dinámico**: El sistema utiliza la figura de un "segurata" que reacciona según el estado del formulario:
-* Imagen de advertencia (`segurata_no.png`) si hay errores en la validación.
-* Imagen de éxito (`segurata_si.png`) cuando el registro es correcto.
-* Resaltado de etiquetas de texto en color rojo ante datos inválidos.
+* **Feedback Visual Dinámico**: Uso de la figura de un "segurata" que reacciona visualmente según las acciones del usuario:
+* `segurata_no.png`: Se muestra cuando hay errores en los campos o datos inválidos.
+* `segurata_si.png`: Aparece tras un registro o inicio de sesión exitoso.
 
 
-* **Multimedia (Botón Mágico)**: Integración de un `MediaView` para reproducir un vídeo (`segurata_vid.mp4`) con retorno automático a la vista estática al finalizar la reproducción.
-* **Persistencia de Datos**: Registro de usuarios exitosos en un archivo de texto plano (`RegistroUsuarios.txt`):
-* Uso de una librería externa (`ClassFichero`) para la gestión de flujos de archivos.
-* Cierre seguro de flujos al finalizar la aplicación mediante el método `stop()`.
+* **Multimedia Interactiva**:
+* Vídeo de seguridad (`segurata_vid.mp4`) integrado en la pantalla principal que se activa mediante el "Botón Mágico".
+* **Pantalla de Sorpresa**: Una escena dedicada exclusivamente a la reproducción de contenido multimedia.
 
 
+* **Persistencia de Usuarios**: Los datos de registro se almacenan automáticamente en un archivo de texto plano llamado `RegistroUsuarios.txt` utilizando una librería personalizada de gestión de ficheros.
 
-## 🛠️ Tecnologías utilizadas
+## 🛠️ Tecnologías Utilizadas
 
 * **Lenguaje**: Java 11.
-* **GUI**: JavaFX 13 (incluyendo módulos `controls`, `fxml` y `media`).
-* **Gestión de dependencias**: Maven.
-* **Diseño**: FXML y Scene Builder.
+* **GUI**: JavaFX 13 (Módulos: controls, fxml, media).
+* **Gestión de Dependencias**: Maven.
+* **Diseño de Interfaz**: FXML y Scene Builder.
 
-## 📁 Estructura del proyecto
+## 📁 Estructura del Proyecto
 
 ```text
 src/main/java/
 ├── com.creus.login.login_register_creus/
-│   ├── App.java                 # Clase principal y gestión de ciclo de vida
-│   ├── Launcher.java            # Lanzador de la aplicación
+│   ├── App.java                 # Clase principal y gestión de navegación
+│   ├── Launcher.java            # Punto de entrada para el JAR
 │   ├── controller/
-│   │   └── Login_gridController.java # Lógica de control de la interfaz
+│   │   ├── Login_gridController.java  # Control del formulario de registro
+│   │   ├── Login_loginController.java # Control del inicio de sesión
+│   │   └── SurpriseController.java    # Control de la pantalla multimedia
 │   └── model/
-│       └── ValidationsRescate.java  # Lógica de validación de negocio
-└── module-info.java             # Configuración de módulos de Java
+│       └── UserDataValidations.java   # Lógica de validación de negocio
+└── module-info.java             # Configuración de módulos del sistema
 
 src/main/resources/
 ├── com/creus/login/login_register_creus/
-│   └── login_grid.fxml          # Definición de la interfaz gráfica
-└── img/                         # Recursos visuales (imágenes y vídeo)
+│   ├── login_grid.fxml          # Vista de registro
+│   ├── login_login.fxml         # Vista de inicio de sesión
+│   └── Surprise.fxml            # Vista de sorpresa
+└── img/                         # Recursos visuales (imágenes y vídeos)
 
 ```
 
-## ⚙️ Instalación y ejecución
+## ⚙️ Instalación y Ejecución
 
-Para ejecutar este proyecto, asegúrate de tener instalado **Maven** y un **JDK 11** o superior.
+Para ejecutar este proyecto, necesitas tener instalado **Maven** y un **JDK 11** o superior.
 
 1. **Clonar el repositorio**.
-2. **Compilar y ejecutar**:
-Utiliza el comando integrado de Maven para JavaFX:
+2. **Ejecutar mediante Maven**:
+Desde la terminal en la raíz del proyecto, usa el siguiente comando:
 ```bash
 mvn clean javafx:run
 
