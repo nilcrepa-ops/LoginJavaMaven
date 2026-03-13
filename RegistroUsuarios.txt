@@ -1,2 +1,1 @@
 name;id;postalCode;birthDate;mail;password
-nil ;23895974D;08031;26/10/2004;test1@test1.com;11111111111111111111

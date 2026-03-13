@@ -1,6 +1,7 @@
 package com.creus.login.login_register_creus.controller;
 
 import com.creus.login.login_register_creus.App;
+import com.creus.login.login_register_creus.model.RegisteredUsersManagement;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -68,7 +69,7 @@ public class Login_gridController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
-            ClassFichero.createFile("RegistroUsuarios.txt");
+            ClassFichero.createFile("RegistroUsuarios.csv");
             String line = "name" + ";" + "id" + ";" + "postalCode" + ";" + "birthDate" + ";" + "mail" + ";" + "password" + "\n";
             ClassFichero.writeFile(line);
         } catch (Exception e) {
@@ -181,6 +182,12 @@ public class Login_gridController implements Initializable {
 //            } catch (Exception e) {
 //                System.out.println("Error al crear el fichero");
 //            }
+
+            if (!RegisteredUsersManagement.addUser(name, pass)) {
+                lblInfo.setText("El usuario no ha podido ser registrado");
+            } else {
+                lblInfo.setText("Usuario registrado con éxito");
+            }
         }
 
         if (camposIncorrectos > 0) {

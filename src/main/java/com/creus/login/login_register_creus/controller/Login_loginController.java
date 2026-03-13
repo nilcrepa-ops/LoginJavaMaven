@@ -12,6 +12,7 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import com.creus.login.login_register_creus.model.RegisteredUsersManagement;
 
 import com.creus.login.login_register_creus.model.UserDataValidations;
 import javafx.scene.image.Image;
@@ -70,25 +71,37 @@ public class Login_loginController {
             todoOk = false;
         }
         if (todoOk) {
-            txtInfo.setText("Inicio de sesión correcto");
+            if (RegisteredUsersManagement.checkLogin(nombre, pass)) {
+                txtInfo.setText("Inicio de sesión correcto");
 
-            txtInfo.setStyle("-fx-text-fill: green");
-            lblName.setStyle("-fx-text-fill: black");
-            lblPass.setStyle("-fx-text-fill: black");
-            Image imgSi = new Image(getClass().getResourceAsStream("/img/segurata_si.png"));
-            imgSegurata.setImage(imgSi);
+                txtInfo.setStyle("-fx-text-fill: green");
+                lblName.setStyle("-fx-text-fill: black");
+                lblPass.setStyle("-fx-text-fill: black");
+                Image imgSi = new Image(getClass().getResourceAsStream("/img/segurata_si.png"));
+                imgSegurata.setImage(imgSi);
 
-            txtNombre.setEditable(false);
-            txtPass.setEditable(false);
-            btnEntrar.setDisable(false);
+                txtNombre.setEditable(false);
+                txtPass.setEditable(false);
+                btnEntrar.setDisable(false);
+            } else {
+                txtInfo.setText("Inicio de sesión incorrecto");
+                txtInfo.setStyle("-fx-text-fill: red");
+                lblName.setStyle("-fx-text-fill: black");
+                lblPass.setStyle("-fx-text-fill: black");
+                Image imgNo = new Image(getClass().getResourceAsStream("/img/segurata_no.png"));
+                imgSegurata.setImage(imgNo);
+
+                txtNombre.setEditable(false);
+                txtPass.setEditable(false);
+                btnEntrar.setDisable(false);
+            }
+
         }
     }
 
     @FXML
     private void botonLimpiar(ActionEvent event) {
         try {
-            // Reemplaza "nombre_de_tu_archivo" por el nombre del FXML al que quieres ir
-            // (sin la extensión .fxml)
             App.setRoot("Surprise");
         } catch (Exception e) {
             System.err.println("Error al cambiar de escena: " + e.getMessage());
