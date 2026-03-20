@@ -1,6 +1,8 @@
 package com.creus.login.login_register_creus.controller;
 
 import com.creus.login.login_register_creus.App;
+import com.creus.login.login_register_creus.model.ConnectionBBDD;
+import static com.creus.login.login_register_creus.model.ConnectionBBDD.insertUser;
 import com.creus.login.login_register_creus.model.RegisteredUsersManagement;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -176,18 +178,7 @@ public class Login_gridController implements Initializable {
             txtPass.setEditable(false);
             btnRegister.setDisable(true);
 
-//            try {
-            String line = name + ";" + id + ";" + postalCode + ";" + birth + ";" + mail + ";" + pass + "\n";
-            ClassFichero.writeFile(line);
-//            } catch (Exception e) {
-//                System.out.println("Error al crear el fichero");
-//            }
-
-            if (!RegisteredUsersManagement.addUser(name, pass)) {
-                lblInfo.setText("El usuario no ha podido ser registrado");
-            } else {
-                lblInfo.setText("Usuario registrado con éxito");
-            }
+            ConnectionBBDD.insertUser(id, name, postalCode, birth, mail, pass);
         }
 
         if (camposIncorrectos > 0) {
