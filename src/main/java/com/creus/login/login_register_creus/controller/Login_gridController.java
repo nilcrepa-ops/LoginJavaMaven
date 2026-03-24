@@ -27,7 +27,9 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class Login_gridController implements Initializable {
 
@@ -102,8 +104,8 @@ public class Login_gridController implements Initializable {
         String postalCode = txtPostal.getText();
         String birth = txtBirth.getText();
         String mail = txtMail.getText();
-        String pass = txtPass.getText();
-
+        String pass = txtPass.getText();        
+        
         //Si hay algun campo vacio, lanzamos advertencia y cambiamos imagen
         if (UserDataValidations.comprobarCampos(name, id, postalCode, birth, mail, pass)) {
             lblInfo.setText(adverts[0]);

@@ -5,6 +5,7 @@
 package com.creus.login.login_register_creus.controller;
 
 import com.creus.login.login_register_creus.App;
+import com.creus.login.login_register_creus.model.ConnectionBBDD;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -71,7 +72,7 @@ public class Login_loginController {
             todoOk = false;
         }
         if (todoOk) {
-            if (RegisteredUsersManagement.checkLogin(nombre, pass)) {
+            if (ConnectionBBDD.validateLogin(nombre, pass)) {
                 txtInfo.setText("Inicio de sesión correcto");
 
                 txtInfo.setStyle("-fx-text-fill: green");
@@ -95,6 +96,31 @@ public class Login_loginController {
                 txtPass.setEditable(false);
                 btnEntrar.setDisable(false);
             }
+
+//            if (RegisteredUsersManagement.checkLogin(nombre, pass)) {
+//                txtInfo.setText("Inicio de sesión correcto");
+//
+//                txtInfo.setStyle("-fx-text-fill: green");
+//                lblName.setStyle("-fx-text-fill: black");
+//                lblPass.setStyle("-fx-text-fill: black");
+//                Image imgSi = new Image(getClass().getResourceAsStream("/img/segurata_si.png"));
+//                imgSegurata.setImage(imgSi);
+//
+//                txtNombre.setEditable(false);
+//                txtPass.setEditable(false);
+//                btnEntrar.setDisable(false);
+//            } else {
+//                txtInfo.setText("Inicio de sesión incorrecto");
+//                txtInfo.setStyle("-fx-text-fill: red");
+//                lblName.setStyle("-fx-text-fill: black");
+//                lblPass.setStyle("-fx-text-fill: black");
+//                Image imgNo = new Image(getClass().getResourceAsStream("/img/segurata_no.png"));
+//                imgSegurata.setImage(imgNo);
+//
+//                txtNombre.setEditable(false);
+//                txtPass.setEditable(false);
+//                btnEntrar.setDisable(false);
+//            }
 
         }
     }

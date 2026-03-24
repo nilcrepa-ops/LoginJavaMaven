@@ -4,6 +4,7 @@ package com.creus.login.login_register_creus.model;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
@@ -26,6 +27,25 @@ public class ConnectionBBDD {
             pstmt.executeUpdate();
         } catch(SQLException e){
             System.out.println("Error al insertar en SQLite: " + e.getMessage());
+        }
+    }
+    
+    public static boolean validateLogin(String name, String pass){
+        
+        String sql = "SELECT * FROM usuarios WHERE name = ? AND password = ?";
+        
+        try (Connection conn = DriverManager.getConnection(URL);
+            PreparedStatement pstmt = conn.prepareStatement(sql)){
+            pstmt.setString(1, name);
+            pstmt.setString(2, pass);
+            
+            ResultSet rs = pstmt.executeQuery();
+            
+            return rs.next();
+            
+        } catch (SQLException e){
+            System.out.println("Error to validate login: " + e.getMessage());
+            return false;
         }
     }
 }
