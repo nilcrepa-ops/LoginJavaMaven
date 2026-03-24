@@ -3,7 +3,6 @@ package com.creus.login.login_register_creus.controller;
 import com.creus.login.login_register_creus.App;
 import com.creus.login.login_register_creus.model.ConnectionBBDD;
 import static com.creus.login.login_register_creus.model.ConnectionBBDD.insertUser;
-import com.creus.login.login_register_creus.model.RegisteredUsersManagement;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -28,9 +27,6 @@ import javafx.scene.media.MediaView;
 
 import java.time.LocalDate;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-
 public class Login_gridController implements Initializable {
 
     @FXML
@@ -38,27 +34,27 @@ public class Login_gridController implements Initializable {
     @FXML
     private Label lblInfo;
     @FXML
-    private TextField txtName;    // Faltaba @FXML
+    private TextField txtName;  
     @FXML
-    private TextField txtId;      // Faltaba @FXML
+    private TextField txtId;    
     @FXML
-    private TextField txtPostal;  // Faltaba @FXML
+    private TextField txtPostal;
     @FXML
-    private TextField txtBirth;   // Faltaba @FXML
+    private TextField txtBirth; 
     @FXML
-    private TextField txtMail;    // Faltaba @FXML
+    private TextField txtMail;  
     @FXML
-    private Label lblDNI;         // Faltaba @FXML
+    private Label lblDNI;       
     @FXML
-    private Label lblPostal;      // Faltaba @FXML
+    private Label lblPostal;    
     @FXML
-    private Label lblBirth;       // Faltaba @FXML
+    private Label lblBirth;     
     @FXML
-    private Label lblMail;        // Faltaba @FXML
+    private Label lblMail;      
     @FXML
-    private Label lblName;        // Faltaba @FXML
+    private Label lblName;      
     @FXML
-    private MediaView videoSeg;   // Faltaba @FXML
+    private MediaView videoSeg; 
     @FXML
     private Button btnRegister;
     @FXML
