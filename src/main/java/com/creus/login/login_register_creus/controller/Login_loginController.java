@@ -92,9 +92,9 @@ public class Login_loginController {
                 Image imgNo = new Image(getClass().getResourceAsStream("/img/segurata_no.png"));
                 imgSegurata.setImage(imgNo);
 
-                txtNombre.setEditable(false);
-                txtPass.setEditable(false);
-                btnEntrar.setDisable(false);
+//                txtNombre.setEditable(false);
+//                txtPass.setEditable(false);
+//                btnEntrar.setDisable(false);
             }
 
 //            if (RegisteredUsersManagement.checkLogin(nombre, pass)) {
